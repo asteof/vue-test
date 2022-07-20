@@ -1,0 +1,15 @@
+@function get-font-path($font-family, $font-name, $ext) {
+    $font-path: "../assets/fonts/";
+    @return $font-path + $font-family + "/" + $font-name + ".#{$ext}";
+}
+
+@mixin font-face($font-family, $font-name: '', $weight: normal, $style: normal) {
+    @font-face {
+        font-family: $font-family;
+        src: url(get-font-path($font-family, $font-name, ttf)) format('truetype');
+        font-weight: $weight;
+        font-style: $style;
+        font-display: swap;
+    }
+}
+
