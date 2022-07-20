@@ -3,4 +3,5 @@ export enum RoutesEnum {
     Login= '/login',
     News= '/news',
     Profile= '/profile',
+    NotFound = '/:catchAll(.*)'
 }

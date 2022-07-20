@@ -1,12 +1,24 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import { RoutesEnum } from '@/router/types';
-import HomeView from '@/views/HomeView.vue';
+import HomePage from '@/views/HomePage.vue';
+import LoginPage from '@/views/LoginPage.vue';
+import ProfilePage from '@/views/ProfilePage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: RoutesEnum.Home,
     name: RoutesEnum.Home,
-    component: HomeView,
+    component: HomePage,
+  },
+  {
+    path: RoutesEnum.Login,
+    name: RoutesEnum.Login,
+    component: LoginPage,
+  },
+  {
+    path: RoutesEnum.Profile,
+    name: RoutesEnum.Profile,
+    component: ProfilePage,
   },
   {
     path: RoutesEnum.News,
@@ -14,7 +26,7 @@ const routes: Array<RouteRecordRaw> = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '@/views/AboutView.vue'),
+    component: () => import(/* webpackChunkName: "about" */ '@/views/NewsPage.vue'),
   },
 ];
 
