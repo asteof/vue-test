@@ -18,5 +18,7 @@ module.exports = {
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': ['error', { ignoreTypeValueShadow: true }],
     'max-len': ['error', { code: 128 }],
+    'vuejs-accessibility/label-has-for': 0,
+    'no-trailing-spaces': 0,
   },
 };
