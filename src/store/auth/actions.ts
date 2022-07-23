@@ -19,7 +19,7 @@ export const actions: ActionTree<AuthStateInterface, RootStateInterface> & Actio
     }
 
     const localStorageUser: LocalStorageInterface = {
-      key: `user ${user.username}`,
+      key: 'user',
       value: true,
     };
 

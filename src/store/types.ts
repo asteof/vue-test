@@ -5,5 +5,5 @@ export interface RootStateInterface {
 }
 
 export enum StoreModuleEnum {
-  authStorageStore = 'authStorageStore',
+  authStore = 'authStore',
 }

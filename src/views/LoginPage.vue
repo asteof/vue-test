@@ -1,5 +1,5 @@
 <template>
-  <div class="login pb-20 flex justify-center xl:justify-end">
+  <div class="login flex justify-center xl:justify-end">
     <LoginComponent/>
   </div>
 </template>

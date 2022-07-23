@@ -1,9 +1,11 @@
 <template>
   <div class="login-wrapper
+  flex flex-col
   w-11/12
   md:w-7/12 xl:w-5/12
   xl:mr-28
-  h-full p-8
+  h-fit
+  p-8
   bg-white bg-opacity-70 rounded-3xl">
     <div class="flex text-2xl justify-between">
       <div class="w-1/2">
@@ -16,7 +18,7 @@
       </div>
     </div>
 
-    <div class="social-media-btn-container flex gap-6 my-16">
+    <div class="social-media-btn-container flex gap-6 my-12">
       <button class="google flex justify-center gap-6 bg-blue-100 rounded-xl py-4 px-6 md:px-10">
         <img src="../assets/icons/google.svg" alt="Google">
         <span class="text-base text-blue-400 font-light">Sign in with Google</span>
@@ -31,16 +33,16 @@
       </button>
     </div>
 
-    <form @submit.prevent>
+    <form @submit.prevent="loginUser">
 
       <div class="inputs">
         <InputComponent
             v-model="email"
             id="email"
-            type="email"
+            type="text"
             label-text="Enter your username or email"
             placeholder="Username or email address"
-            class="mb-8"
+            class="mb-4"
         />
         <InputComponent
             v-model="password"
@@ -57,8 +59,7 @@
         <button
             type="submit"
             class="bg-lime-700 bg-opacity-80 text-white py-4 px-28 rounded-xl"
-        >Sign in
-        </button>
+        >Sign in</button>
       </div>
     </form>
   </div>
@@ -67,6 +68,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import InputComponent from '@/components/InputComponent.vue';
+import { StoreModuleEnum } from '@/store/types';
+import { AuthActionEnum, UserInterface } from '@/store/auth/types';
+import { RoutesEnum } from '@/router/types';
 
 export default defineComponent({
   name: 'LoginComponent',
@@ -78,6 +82,20 @@ export default defineComponent({
       email: '',
       password: '',
     };
+  },
+  computed: {
+    user(): UserInterface {
+      return {
+        username: this.email,
+        password: this.password,
+      };
+    },
+  },
+  methods: {
+    loginUser() {
+      this.$store.dispatch(`${StoreModuleEnum.authStore}/${AuthActionEnum.LOGIN_USER}`, this.user);
+      this.$router.push(RoutesEnum.Profile);
+    },
   },
 });
 </script>
