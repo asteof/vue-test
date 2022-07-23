@@ -40,8 +40,8 @@
             type="email"
             label-text="Enter your username or email"
             placeholder="Username or email address"
+            class="mb-8"
         />
-        <div class="mb-8"></div>
         <InputComponent
             v-model="password"
             id="password"

@@ -20,5 +20,8 @@ module.exports = {
     'max-len': ['error', { code: 128 }],
     'vuejs-accessibility/label-has-for': 0,
     'no-trailing-spaces': 0,
+    'linebreak-style': 0,
+    'no-useless-return': 0,
+    'consistent-return': 0,
   },
 };
