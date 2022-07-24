@@ -1,7 +1,8 @@
 <template>
   <div class="news">
     <div class="flex h-full w-full relative box-border p-6 gap-6">
-      <div class="news-container bg-amber-100 bg-opacity-40 w-1/2 h-full rounded-3xl overflow-scroll">
+      <div v-if="allNews"
+          class="news-container bg-amber-100 bg-opacity-40 w-1/2 h-full rounded-3xl overflow-scroll">
         <NewsComponent
             v-for="newsPost in allNews"
             :key="newsPost.id"
@@ -12,8 +13,11 @@
         />
       </div>
 
-      <div class="news-container bg-fuchsia-100 bg-opacity-40 w-1/2 h-fit rounded-3xl">
-        <button @click="getRandomNews" class="bg-black bg-opacity-80 text-white p-2 rounded-lg">Get new random post</button>
+      <div v-if="randomNewsPost"
+          class="news-container bg-fuchsia-100 bg-opacity-40 w-1/2 h-fit rounded-3xl">
+        <button @click="getRandomNews" class="bg-black bg-opacity-80 text-orange-400 p-2 rounded-lg">
+          Get new random post
+        </button>
 
         <NewsComponent
             :key="randomNewsPost.id"
@@ -39,11 +43,6 @@ export default defineComponent({
   name: 'NewsPage',
   components: {
     NewsComponent,
-  },
-
-  async mounted() {
-    await this.$store.dispatch(`${StoreModuleEnum.newsStore}/${NewsActionEnum.FETCH_NEWS}`);
-    await this.$store.dispatch(`${StoreModuleEnum.newsStore}/${NewsActionEnum.FETCH_RANDOM_NEWS_POST}`);
   },
   computed: {
     allNews(): NewsInterface[] {

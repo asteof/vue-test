@@ -12,7 +12,8 @@
 import { defineComponent } from 'vue';
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import { StoreModuleEnum } from '@/store/types';
-import { AuthActionEnum } from '@/store/auth/types'; // @ is an alias to /src
+import { AuthActionEnum } from '@/store/auth/types';
+import { NewsActionEnum } from '@/store/news/actions'; // @ is an alias to /src
 
 export default defineComponent({
   name: 'App',
@@ -20,7 +21,9 @@ export default defineComponent({
     HeaderComponent,
   },
   async beforeMount() {
-    await this.$store.dispatch(`${StoreModuleEnum.authStore}/${AuthActionEnum.REMOVE}`, 'user');
+    await this.$store.dispatch(`${ StoreModuleEnum.authStore }/${ AuthActionEnum.REMOVE }`, 'user');
+    await this.$store.dispatch(`${ StoreModuleEnum.newsStore }/${ NewsActionEnum.FETCH_NEWS }`);
+    await this.$store.dispatch(`${ StoreModuleEnum.newsStore }/${ NewsActionEnum.FETCH_RANDOM_NEWS_POST }`);
   },
 });
 

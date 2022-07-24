@@ -34,7 +34,6 @@
     </div>
 
     <form @submit.prevent="loginUser">
-
       <div class="inputs">
         <InputComponent
             v-model.lazy="formData.email"
@@ -52,6 +51,7 @@
             placeholder="Password"
         />
       </div>
+      <p class="text-red-600" v-show="!isCorrect">The username or password you entered is incorrect</p>
 
       <p class="text-right text-blue-400 font-light"><a href="#">Forgot Password</a></p>
 
@@ -84,6 +84,7 @@ export default defineComponent({
         email: '',
         password: '',
       },
+      isCorrect: true,
     };
   },
   computed: {
@@ -96,6 +97,11 @@ export default defineComponent({
   },
   methods: {
     async loginUser() {
+      if (!(this.user.username === 'admin' && this.user.password === '12345')) {
+        this.isCorrect = false;
+        return;
+      }
+      this.isCorrect = true;
       await this.$store.dispatch(`${StoreModuleEnum.authStore}/${AuthActionEnum.LOGIN_USER}`, this.user);
       await this.$router.push(RoutesEnum.Profile);
     },

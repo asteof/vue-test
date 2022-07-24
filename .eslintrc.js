@@ -23,5 +23,6 @@ module.exports = {
     'linebreak-style': 0,
     'no-useless-return': 0,
     'consistent-return': 0,
+    'template-curly-spacing': 0,
   },
 };

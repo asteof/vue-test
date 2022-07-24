@@ -14,10 +14,6 @@ interface Actions<S = AuthStateInterface, R = RootStateInterface> {
 
 export const actions: ActionTree<AuthStateInterface, RootStateInterface> & Actions = {
   [AuthActionEnum.LOGIN_USER]: async ({ commit, dispatch }, user) => {
-    if (!(user.username === 'admin' && user.password === '12345')) {
-      return;
-    }
-
     const localStorageUser: LocalStorageInterface = {
       key: 'user',
       value: true,
@@ -27,9 +23,8 @@ export const actions: ActionTree<AuthStateInterface, RootStateInterface> & Actio
     commit(AuthMutationEnum.SET_LOGGED_IN, true);
   },
   [AuthActionEnum.LOGOUT_USER]: async ({ commit, dispatch }) => {
-    await dispatch(AuthActionEnum.REMOVE, false);
-    await dispatch(AuthActionEnum.SET, false);
-    commit(AuthMutationEnum.SET_LOGGED_IN, true);
+    await dispatch(AuthActionEnum.REMOVE, 'user');
+    commit(AuthMutationEnum.SET_LOGGED_IN, false);
   },
   [AuthActionEnum.SET]: ({ commit }, payload) => {
     commit(AuthMutationEnum.SET_LOCAL_STORAGE, payload);
