@@ -4,6 +4,8 @@ import HomePage from '@/views/HomePage.vue';
 import LoginPage from '@/views/LoginPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
 import store from '@/store';
+import { StoreModuleEnum } from '@/store/types';
+import { AuthGettersEnum } from '@/store/auth/types';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -43,7 +45,7 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to) => {
-  const isLoggedIn = store.getters['auth/doesTokenExist'];
+  const isLoggedIn = store.getters[`${StoreModuleEnum.authStore}/${AuthGettersEnum.doesTokenExist}`];
   if (to.meta.requiresAuth && !isLoggedIn) {
     return { name: RoutesEnum.Login };
   }

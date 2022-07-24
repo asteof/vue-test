@@ -4,18 +4,23 @@
     'background-position': 'bottom left'
   }" class="h-screen flex flex-col">
     <HeaderComponent/>
-    <router-view class="flex-auto"/>
+    <router-view class="flex-auto overflow-hidden"/>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HeaderComponent from '@/components/HeaderComponent.vue'; // @ is an alias to /src
+import HeaderComponent from '@/components/HeaderComponent.vue';
+import { StoreModuleEnum } from '@/store/types';
+import { AuthActionEnum } from '@/store/auth/types'; // @ is an alias to /src
 
 export default defineComponent({
   name: 'App',
   components: {
     HeaderComponent,
+  },
+  async beforeMount() {
+    await this.$store.dispatch(`${StoreModuleEnum.authStore}/${AuthActionEnum.REMOVE}`, 'user');
   },
 });
 

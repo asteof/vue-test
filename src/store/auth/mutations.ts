@@ -1,5 +1,5 @@
 import { MutationTree } from 'vuex';
-import { AuthStateInterface, AuthMutationEnum, LocalStorageInterface } from '@/store/auth/types';
+import { AuthStateInterface, LocalStorageInterface, AuthMutationEnum } from '@/store/auth/types';
 
 interface Mutations<S = AuthStateInterface> {
   [AuthMutationEnum.SET_LOGGED_IN](state: S, isLoggedIn: boolean): void;

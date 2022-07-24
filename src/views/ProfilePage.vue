@@ -1,9 +1,8 @@
 <template>
   <div class="profile">
-    <h1>This is a profile page</h1>
-    <div class="justify-center flex bg-green-300 items-center h-screen">
+    <div class="justify-center flex bg-green-300 bg-opacity-80 items-center h-full">
       <div class="text-4xl">
-        Good day 👋🏼
+        Logged in as admin. Enjoy your day!
       </div>
     </div>
   </div>

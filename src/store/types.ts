@@ -1,9 +1,12 @@
 import { AuthStateInterface } from '@/store/auth/types';
+import { NewsStateInterface } from '@/store/news/types';
 
 export interface RootStateInterface {
-  authStorageStore: AuthStateInterface,
+  authStore: AuthStateInterface,
+  newsStore: NewsStateInterface,
 }
 
 export enum StoreModuleEnum {
   authStore = 'authStore',
+  newsStore = 'newsStore',
 }

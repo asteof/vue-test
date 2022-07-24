@@ -1,3 +1,7 @@
+export interface AuthStateInterface {
+  isLoggedIn: boolean,
+  token: string | null,
+}
 export enum AuthMutationEnum {
   SET_LOCAL_STORAGE = 'SET_LOCAL_STORAGE',
   GET_LOCAL_STORAGE = 'GET_LOCAL_STORAGE',
@@ -14,13 +18,7 @@ export enum AuthActionEnum {
 }
 
 export enum AuthGettersEnum {
-  isLoggedIn = 'isLoggedIn',
   doesTokenExist = 'doesTokenExist'
-}
-
-export interface AuthStateInterface {
-  isLoggedIn: boolean,
-  token: string | null,
 }
 
 export interface LocalStorageInterface {

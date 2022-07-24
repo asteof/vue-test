@@ -10,7 +10,7 @@ export const state: AuthStateInterface = {
   token: null,
 };
 
-export const authStorageStore: Module<AuthStateInterface, RootStateInterface> = {
+export const authStore: Module<AuthStateInterface, RootStateInterface> = {
   namespaced: true,
   state,
   getters,

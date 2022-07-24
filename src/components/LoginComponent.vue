@@ -37,7 +37,7 @@
 
       <div class="inputs">
         <InputComponent
-            v-model="email"
+            v-model.lazy="formData.email"
             id="email"
             type="text"
             label-text="Enter your username or email"
@@ -45,7 +45,7 @@
             class="mb-4"
         />
         <InputComponent
-            v-model="password"
+            v-model.lazy="formData.password"
             id="password"
             type="password"
             label-text="Enter your Password"
@@ -59,7 +59,8 @@
         <button
             type="submit"
             class="bg-lime-700 bg-opacity-80 text-white py-4 px-28 rounded-xl"
-        >Sign in</button>
+        >Sign in
+        </button>
       </div>
     </form>
   </div>
@@ -79,22 +80,24 @@ export default defineComponent({
   },
   data() {
     return {
-      email: '',
-      password: '',
+      formData: {
+        email: '',
+        password: '',
+      },
     };
   },
   computed: {
     user(): UserInterface {
       return {
-        username: this.email,
-        password: this.password,
+        username: this.formData.email,
+        password: this.formData.password,
       };
     },
   },
   methods: {
-    loginUser() {
-      this.$store.dispatch(`${StoreModuleEnum.authStore}/${AuthActionEnum.LOGIN_USER}`, this.user);
-      this.$router.push(RoutesEnum.Profile);
+    async loginUser() {
+      await this.$store.dispatch(`${StoreModuleEnum.authStore}/${AuthActionEnum.LOGIN_USER}`, this.user);
+      await this.$router.push(RoutesEnum.Profile);
     },
   },
 });

@@ -20,9 +20,16 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { StoreModuleEnum } from '@/store/types';
+import { AuthGettersEnum } from '@/store/auth/types';
 
 export default defineComponent({
   name: 'HeaderComponent',
+  computed: {
+    isLoggedIn(): boolean {
+      return this.$store.getters[`${StoreModuleEnum.authStore}/${AuthGettersEnum.doesTokenExist}`];
+    },
+  },
 });
 
 </script>
